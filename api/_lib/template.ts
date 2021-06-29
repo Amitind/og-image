@@ -14,12 +14,14 @@ const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString('ba
 function getCss(theme: string, fontSize: string) {
     let background = 'white';
     let foreground = 'black';
-    let radial = 'lightgray';
+    // changed from lightgray to white
+    let radial = 'white';
 
     if (theme === 'dark') {
         background = 'black';
         foreground = 'white';
-        radial = 'dimgray';
+        // changed from dimgray to black
+        radial = 'black';
     }
     return `
     @font-face {
@@ -116,10 +118,10 @@ export function getHtml(parsedReq: ParsedRequest) {
     <body>
         <div>
             <div class="spacer">
-            <div class="logo-wrapper">
-                ${images.map((img, i) =>
-                    getPlusSign(i) + getImage(img, widths[i], heights[i])
-                ).join('')}
+            <div class="logo-wrapper" style="display:none">
+            ${images.map((img, i) =>
+                getPlusSign(i) + getImage(img, widths[i], heights[i])
+            ).join('')}
             </div>
             <div class="spacer">
             <div class="heading">${emojify(
